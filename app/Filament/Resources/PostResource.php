@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Fields\PostContent;
 use App\Filament\Fields\PostFooter;
+use App\Filament\Filters\DeferredSelectFilter;
+use App\Filament\Filters\DeferredTernaryFilter;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use Filament\Forms;
@@ -11,8 +13,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Support\Str;
 use Pboivin\FilamentPeek\Forms\Components\PreviewLink;
 
@@ -125,10 +125,10 @@ class PostResource extends Resource
             ])
             ->bulkActions([])
             ->filters([
-                SelectFilter::make('category')
+                DeferredSelectFilter::make('category')
                     ->relationship('category', 'name'),
 
-                TernaryFilter::make('is_featured'),
+                DeferredTernaryFilter::make('is_featured'),
             ])
             ->defaultSort('published_at', 'desc');
     }

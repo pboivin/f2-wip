@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Filament\Filters\DeferredSelectFilter;
+use App\Filament\Filters\DeferredTernaryFilter;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationGroup;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // **Uncomment this to replace all Select and Ternary filters globally**
+
+        // $this->app->bind(SelectFilter::class, DeferredSelectFilter::class);
+        // $this->app->bind(TernaryFilter::class, DeferredTernaryFilter::class);
     }
 
     /**
